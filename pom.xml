@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.byhiras</groupId>
+	<artifactId>all</artifactId>
+	<packaging>pom</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Build Profiles</name>
+	<url>http://byhiras.com</url>
+
+	<profiles>
+		<profile>
+			<id>build-all</id>
+			<modules>
+				<module>parent</module>
+				<module>marshalling</module>
+				<module>security-model</module>
+				<module>security-model-dao</module>
+				<module>rest-client</module>
+				<module>services</module>
+				<module>api-common-model</module>
+				<module>api-model</module>
+				<module>api-service</module>
+				<module>api-rest-service</module>
+				<module>api-java-client</module>
+				<module>testutils</module>
+				<module>auction-tracker-server</module>				
+			</modules>
+		</profile>
+	</profiles>
+</project>

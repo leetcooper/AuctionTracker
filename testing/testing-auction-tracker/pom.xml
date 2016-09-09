@@ -29,5 +29,9 @@
 			<groupId>org.exparity</groupId>
 			<artifactId>expectamundo</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.byhiras</groupId>
+			<artifactId>auction-tracker-server</artifactId>
+		</dependency>		
 	</dependencies>
 </project>

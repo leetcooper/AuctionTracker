@@ -17,19 +17,13 @@
 		<java.version>1.8</java.version>
 		<auctiontracker.release>0.0.1-SNAPSHOT</auctiontracker.release>
 		<spring-boot>1.4.0.RELEASE</spring-boot>
-		<javax.inject>1</javax.inject>
 		<org.exparity.expectamundo>0.9.20</org.exparity.expectamundo>
 		<org.exparity.exparity-stub>2.0.0</org.exparity.exparity-stub>
-		<guava>19.0</guava>
-		<org.apache.commons.io>1.3.2</org.apache.commons.io>
-		<javax.interceptor-api>1.2</javax.interceptor-api>
-		<org.hibernate.validator>4.3.1.Final</org.hibernate.validator>
-		<javax.validation>1.1.0.Final</javax.validation>
 		<info.cukes>1.2.4</info.cukes>
 		<exparity.expectamundo>0.9.20</exparity.expectamundo>
 		<jacoco-maven-plugin>0.7.6.201602180812</jacoco-maven-plugin>
 	</properties>
-	
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -56,82 +50,11 @@
 				<version>${exparity.expectamundo}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.byhiras</groupId>
-				<artifactId>marshalling</artifactId>
-				<version>${auctiontracker.release}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.byhiras</groupId>
-				<artifactId>security-model</artifactId>
-				<version>${auctiontracker.release}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.byhiras</groupId>
-				<artifactId>security-model-dao</artifactId>
-				<version>${auctiontracker.release}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.byhiras</groupId>
-				<artifactId>services</artifactId>
-				<version>${auctiontracker.release}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.byhiras</groupId>
-				<artifactId>api-common-model</artifactId>
-				<version>${auctiontracker.release}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.byhiras</groupId>
-				<artifactId>api-model</artifactId>
-				<version>${auctiontracker.release}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.byhiras</groupId>
-				<artifactId>api-service</artifactId>
-				<version>${auctiontracker.release}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.byhiras</groupId>
-				<artifactId>api-rest-service</artifactId>
-				<version>${auctiontracker.release}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.byhiras</groupId>
-				<artifactId>rest-client</artifactId>
-				<version>${auctiontracker.release}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.byhiras</groupId>
-				<artifactId>api-java-client</artifactId>
-				<version>${auctiontracker.release}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.byhiras</groupId>
-				<artifactId>testutils</artifactId>
-				<version>${auctiontracker.release}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
 				<version>${spring-boot}</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>javax.inject</groupId>
-				<artifactId>javax.inject</artifactId>
-				<version>${javax.inject}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.google.guava</groupId>
-				<artifactId>guava</artifactId>
-				<version>${guava}</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-io</groupId>
-				<artifactId>commons-io</artifactId>
-				<version>${org.apache.commons.io}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exparity</groupId>
@@ -140,10 +63,11 @@
 				<scope>test</scope>
 			</dependency>
 			<dependency>
-				<groupId>javax.interceptor</groupId>
-				<artifactId>javax.interceptor-api</artifactId>
-				<version>${javax.interceptor-api}</version>
-			</dependency>
+				<groupId>com.byhiras</groupId>
+				<artifactId>auction-tracker-server</artifactId>
+				<version>${auctiontracker.release}</version>
+				<scope>test</scope>				
+			</dependency>			
 		</dependencies>
 	</dependencyManagement>
 	<build>

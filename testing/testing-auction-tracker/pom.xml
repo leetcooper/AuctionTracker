@@ -32,6 +32,11 @@
 		<dependency>
 			<groupId>com.byhiras</groupId>
 			<artifactId>auction-tracker-server</artifactId>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>					
 	</dependencies>
 </project>

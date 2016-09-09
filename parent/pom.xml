@@ -22,6 +22,7 @@
 		<info.cukes>1.2.4</info.cukes>
 		<exparity.expectamundo>0.9.20</exparity.expectamundo>
 		<jacoco-maven-plugin>0.7.6.201602180812</jacoco-maven-plugin>
+		<org.apache.commons.lang>2.6</org.apache.commons.lang>
 	</properties>
 
 	<dependencyManagement>
@@ -66,8 +67,13 @@
 				<groupId>com.byhiras</groupId>
 				<artifactId>auction-tracker-server</artifactId>
 				<version>${auctiontracker.release}</version>
-				<scope>test</scope>				
-			</dependency>			
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${org.apache.commons.lang}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<build>

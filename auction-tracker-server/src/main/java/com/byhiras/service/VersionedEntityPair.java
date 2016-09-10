@@ -1,6 +1,6 @@
 package com.byhiras.service;
 
-import com.byhiras.model.bid.VersionedEntity;
+import com.byhiras.bid.model.VersionedEntity;
 
 public class VersionedEntityPair <T extends VersionedEntity> {
 	public T previousVersionedEntity;

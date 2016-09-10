@@ -38,7 +38,7 @@ public class ReferenceAPIImpl implements ReferenceApi {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends RefItem> T getById(final Class<T> t, final RefId id) {
+	public <T extends RefItem> T getById(final Class<T> t, final RefId id) {		
 		return (T) refRepositories.get(t).findOne(id);
 	}
 

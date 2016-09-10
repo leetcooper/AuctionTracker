@@ -1,4 +1,4 @@
-package com.byhiras.model.bid;
+package com.byhiras.bid.model;
 
 import static org.apache.commons.codec.binary.Hex.decodeHex;
 import static org.apache.commons.codec.binary.Hex.encodeHex;

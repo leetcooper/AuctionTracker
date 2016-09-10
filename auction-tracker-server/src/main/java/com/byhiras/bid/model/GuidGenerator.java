@@ -1,4 +1,4 @@
-package com.byhiras.model.bid;
+package com.byhiras.bid.model;
 
 public abstract class GuidGenerator {
 	public static Guid generateGuid() {

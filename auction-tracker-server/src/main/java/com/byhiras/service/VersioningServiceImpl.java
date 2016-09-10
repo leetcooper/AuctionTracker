@@ -3,14 +3,15 @@ package com.byhiras.service;
 import java.time.LocalDateTime;
 import org.springframework.stereotype.Service;
 
-import com.byhiras.model.bid.VersionDetails;
-import com.byhiras.model.bid.VersionedEntity;
+import com.byhiras.bid.model.VersionDetails;
+import com.byhiras.bid.model.VersionedEntity;
 
 @Service
 public class VersioningServiceImpl implements VersioningService{
 
 	@Override
-	public <T extends VersionedEntity> T makeInitialVersion(final T initialVersion) {
+	public <T extends VersionedEntity> T makeInitialVersion(final T initialVersion, Long entityId) {
+		initialVersion.getVersion().setEntityId(entityId);
 		validateVersion(initialVersion);
 		makeNewCurrent(initialVersion);
 		initialVersion.getVersion().setVersion(1);

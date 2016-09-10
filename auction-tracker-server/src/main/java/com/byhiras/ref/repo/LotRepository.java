@@ -10,4 +10,7 @@ public interface LotRepository extends CrudRepository<Lot, RefId>{
 	@Override
     @Cacheable("lotCache")
     public Lot findOne(final RefId id);	
+	
+    @Cacheable("lotCache")
+    public Lot findByLotNumber(final Integer id);	
 }

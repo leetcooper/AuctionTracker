@@ -34,8 +34,8 @@ Feature: Auction Tracker Fetures
     When bidding on lot 1 opens:
     And bidder "lee" bids 10.50 for lot 1 using paddle 42:
     Then if the bidder "lee" looks up lot 1 bid history the following matching bid is listed:
-      | price     | highestCurrentBid  | paddle  |
-      | 10.50     | true               | 42      |
+      | price     | paddleNumber  |
+      | 10.50     | 42            |
     And if the bidder "lee" looks up all lots they have placed at the "sothebys" auction the following matching lot is listed:
       | lot         |
       | 1           |

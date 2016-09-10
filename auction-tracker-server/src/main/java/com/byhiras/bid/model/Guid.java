@@ -1,4 +1,4 @@
-package com.byhiras.model.bid;
+package com.byhiras.bid.model;
 
 import java.io.Serializable;
 

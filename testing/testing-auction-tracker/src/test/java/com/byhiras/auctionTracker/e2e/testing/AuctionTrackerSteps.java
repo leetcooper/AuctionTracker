@@ -1,6 +1,9 @@
 package com.byhiras.auctionTracker.e2e.testing;
 
+import java.math.BigDecimal;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.byhiras.AuctionTrackerServer;
+import com.byhiras.bid.model.Bid;
+import com.byhiras.messaging.BidPublisher;
 import com.byhiras.ref.ReferenceApi;
 import com.byhiras.ref.builder.AuctionBuilder;
 import com.byhiras.ref.builder.AuctionPaddleBuilder;
@@ -22,6 +27,7 @@ import com.byhiras.ref.model.Lot;
 import com.byhiras.ref.model.User;
 import com.byhiras.ref.repo.AuctionRepository;
 import com.byhiras.ref.repo.UserRepository;
+import com.byhiras.service.BiddingService;
 
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
@@ -41,10 +47,17 @@ import cucumber.api.java.en.When;
 @ContextConfiguration(classes = AuctionTrackerServer.class, loader = SpringApplicationContextLoader.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:9797")
+@Transactional
 public class AuctionTrackerSteps {
 	
 	@Autowired
 	private ReferenceApi referenceApi;
+	
+	@Autowired
+	private BiddingService biddingService;
+	
+	@Autowired
+	private BidPublisher bidPublisher;
 
 	@Given("^a \"([^\"]*)\" auction with a catelogue list:$")
 	public void a_auction_with_a_catelogue_list(final String auctionName, final List<Lot> lots) throws Throwable {
@@ -79,24 +92,27 @@ public class AuctionTrackerSteps {
 	}
 	
 	@When("^bidding on lot (\\d+) opens:$")
-	public void bidding_on_lot_opens(int arg1) throws Throwable {
-		
+	public void bidding_on_lot_opens(Integer lot) throws Throwable {
+		biddingService.openBiddingForLot(lot);
 	}	
 
-	@When("^bidder \"([^\"]*)\" bids (\\d+)\\.(\\d+) for lot (\\d+) using paddle (\\d+):$")
-	public void bidder_bids_for_lot_using_paddle(String arg1, int arg2, int arg3, int arg4, int arg5) throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
+	@When("^bidder \"([^\"]*)\" bids (.+) for lot (\\d+) using paddle (\\d+):$")
+	public void bidder_bids_for_lot_using_paddle(String username, Double price, Integer lot, Integer paddle) throws Throwable {
+		final Bid bid = new Bid();
+		bid.setLotNumber(lot);
+		bid.setPaddleNumber(paddle);
+		bid.setPrice(new BigDecimal(price));
+		bidPublisher.publish(bid);
 	}
 
 	@Then("^if the bidder \"([^\"]*)\" looks up lot (\\d+) bid history the following matching bid is listed:$")
-	public void if_the_bidder_looks_up_lot_bid_history_the_following_matching_bid_is_listed(String arg1, int arg2,
-			DataTable arg3) throws Throwable {
+	public void if_the_bidder_looks_up_lot_bid_history_the_following_matching_bid_is_listed(String username, Integer lotNumber,
+			List<Bid> bids) throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
 		// For automatic transformation, change DataTable to one of
 		// List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
 		// E,K,V must be a scalar (String, Integer, Date, enum etc)
-		throw new PendingException();
+		//throw new PendingException();
 	}
 
 	@Then("^if the bidder \"([^\"]*)\" looks up all lots they have placed at the \"([^\"]*)\" auction the following matching lot is listed:$")
@@ -106,7 +122,7 @@ public class AuctionTrackerSteps {
 		// For automatic transformation, change DataTable to one of
 		// List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
 		// E,K,V must be a scalar (String, Integer, Date, enum etc)
-		throw new PendingException();
+		//throw new PendingException();
 	}
 
 }

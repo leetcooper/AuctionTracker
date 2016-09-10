@@ -1,10 +1,10 @@
-package com.byhiras.model.bid;
+package com.byhiras.bid.model;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -14,11 +14,14 @@ public class Bid {
     @JsonIgnore
     protected Guid guid = GuidGenerator.generateGuid();	
     
+    @ManyToOne
+    @JsonIgnore
+    private LotBids lotBids;
+    
 	private Integer paddleNumber;
 	
 	private BigDecimal price;
 	
-	@Embedded
 	private Integer lotNumber;	
 
 	public Integer getPaddleNumber() {
@@ -44,4 +47,12 @@ public class Bid {
 	public void setLotNumber(Integer lotNumber) {
 		this.lotNumber = lotNumber;
 	}
+
+	public LotBids getLotBids() {
+		return lotBids;
+	}
+
+	public void setLotBids(LotBids lotBids) {
+		this.lotBids = lotBids;
+	}	
 }

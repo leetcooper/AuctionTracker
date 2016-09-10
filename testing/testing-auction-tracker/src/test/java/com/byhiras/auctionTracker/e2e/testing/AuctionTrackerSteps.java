@@ -3,6 +3,7 @@ package com.byhiras.auctionTracker.e2e.testing;
 import static java.util.concurrent.Executors.newFixedThreadPool;
 import static org.exparity.expectamundo.Expectamundo.expect;
 import static org.exparity.expectamundo.Expectamundo.expectThat;
+import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,8 +18,6 @@ import javax.transaction.Transactional;
 
 import org.exparity.expectamundo.Expectamundo;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationContextLoader;
@@ -26,7 +25,7 @@ import org.springframework.boot.test.context.SpringBootContextLoader;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import static org.junit.Assert.*;
+
 import com.byhiras.AuctionTrackerServer;
 import com.byhiras.bid.model.Bid;
 import com.byhiras.bid.model.LotBids;
@@ -42,7 +41,6 @@ import com.byhiras.ref.model.User;
 import com.byhiras.ref.repo.AuctionRepository;
 import com.byhiras.ref.repo.UserRepository;
 import com.byhiras.service.BiddingService;
-import com.byhiras.service.BiddingServiceImpl;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -62,7 +60,6 @@ import cucumber.api.java.en.When;
 @IntegrationTest("server.port:9797")
 @Transactional
 public class AuctionTrackerSteps {
-	private static Logger LOG = LoggerFactory.getLogger(AuctionTrackerSteps.class);	
 	
 	@Autowired
 	private ReferenceApi referenceApi;
@@ -90,7 +87,6 @@ public class AuctionTrackerSteps {
 	@Given("^a bidder \"([^\"]*)\" registers at the \"([^\"]*)\" auction and recieves paddle (\\d+):$")
 	public void a_bidder_registers_at_the_auction_and_recieves_paddle(final String username, final String auctionName, final Integer paddleNumber)
 			throws Throwable {
-		LOG.info(username);
 		final UserRepository userRepo = (UserRepository)referenceApi.getRepository(User.class);
 		final User user = new UserBuilder().withUsername(username).build();
 		userRepo.save(user);

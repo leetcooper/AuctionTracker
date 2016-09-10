@@ -13,18 +13,8 @@
 			<id>build-all</id>
 			<modules>
 				<module>parent</module>
-				<module>marshalling</module>
-				<module>security-model</module>
-				<module>security-model-dao</module>
-				<module>rest-client</module>
-				<module>services</module>
-				<module>api-common-model</module>
-				<module>api-model</module>
-				<module>api-service</module>
-				<module>api-rest-service</module>
-				<module>api-java-client</module>
-				<module>testutils</module>
-				<module>auction-tracker-server</module>				
+				<module>auction-tracker-server</module>
+				<module>testing/testing-auction-tracker</module>				
 			</modules>
 		</profile>
 	</profiles>

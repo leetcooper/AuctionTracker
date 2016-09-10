@@ -1,27 +1,27 @@
-package com.byhiras.model.dao;
+package com.byhiras.ref.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Embedded;
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-public class Auction implements VersionedEntity {
-    @EmbeddedId
-    @JsonIgnore
-    protected Guid guid = GuidGenerator.generateGuid();	
-    
-	@Embedded
-	private VersionDetails version = new VersionDetails();
-	@OneToMany
-	private List<AuctionPaddle> paddles;
-	@OneToOne
+public class Auction implements RefItem{
+	
+	@EmbeddedId
+	private RefId id = RefIdGenerator.getNextRefId();
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<AuctionPaddle> paddles = new ArrayList<>();
+	
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Catalog catalog;
+	
 	private String name;
 
 	public String getName() {
@@ -48,18 +48,15 @@ public class Auction implements VersionedEntity {
 		this.paddles = paddles;
 	}
 
-	@Override
-	@JsonIgnore
-	public Long getId() {
-		return version.getEntityId();
+	public RefId getId() {
+		return id;
 	}
 
-	public VersionDetails getVersion() {
-		return version;
+	public void setId(RefId id) {
+		this.id = id;
 	}
 
-	public void setVersion(VersionDetails version) {
-		this.version = version;
-	}
-
+	public void addPaddle(final AuctionPaddle paddle) {
+		paddles.add(paddle);
+	}	
 }

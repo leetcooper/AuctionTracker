@@ -23,6 +23,7 @@
 		<exparity.expectamundo>0.9.20</exparity.expectamundo>
 		<jacoco-maven-plugin>0.7.6.201602180812</jacoco-maven-plugin>
 		<org.apache.commons.lang>2.6</org.apache.commons.lang>
+		<javax.inject>1</javax.inject>
 	</properties>
 
 	<dependencyManagement>
@@ -74,6 +75,11 @@
 				<artifactId>commons-lang</artifactId>
 				<version>${org.apache.commons.lang}</version>
 			</dependency>
+			<dependency>
+				<groupId>javax.inject</groupId>
+				<artifactId>javax.inject</artifactId>
+				<version>${javax.inject}</version>
+			</dependency>			
 		</dependencies>
 	</dependencyManagement>
 	<build>

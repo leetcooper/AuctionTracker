@@ -1,4 +1,4 @@
-package com.byhiras.model.dao;
+package com.byhiras.model.bid;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package com.byhiras.model.dao;
+package com.byhiras.model.bid;
 
 public interface VersionedEntity {
 	public VersionDetails getVersion();

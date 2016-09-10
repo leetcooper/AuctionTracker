@@ -2,8 +2,9 @@ package com.byhiras.service;
 
 import java.time.LocalDateTime;
 import org.springframework.stereotype.Service;
-import com.byhiras.model.dao.VersionDetails;
-import com.byhiras.model.dao.VersionedEntity;
+
+import com.byhiras.model.bid.VersionDetails;
+import com.byhiras.model.bid.VersionedEntity;
 
 @Service
 public class VersioningServiceImpl implements VersioningService{

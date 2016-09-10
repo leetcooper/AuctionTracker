@@ -1,4 +1,4 @@
-package com.byhiras.model.dao;
+package com.byhiras.model.bid;
 
 import java.io.Serializable;
 
@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Guid implements Serializable, Comparable<Guid> {
 
     private static final long serialVersionUID = 1L;
-    @Column(name = "ID", columnDefinition="BINARY(16)")
+    @Column(name = "GUID", columnDefinition="BINARY(16)")
     protected byte[] guid;
 
     public Guid(final byte[] guid) {

@@ -1,4 +1,4 @@
-package com.byhiras.model.dao;
+package com.byhiras.model.bid;
 
 import java.util.List;
 
@@ -8,10 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.byhiras.ref.model.RefId;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Lot implements VersionedEntity{
+public class LotBids implements VersionedEntity{
 	
     @EmbeddedId
     @JsonIgnore
@@ -19,13 +20,16 @@ public class Lot implements VersionedEntity{
     
     @Embedded
     private VersionDetails version = new VersionDetails();		
-	@OneToOne
-	private Long cataLogNumber;	
-	@OneToOne
-	private Bid currentHigestBid;	
-	private Integer lotNumber;	
-	private String description;	
-	@OneToMany
+    
+	@Embedded
+	private RefId lot;	    
+    
+    @OneToOne
+	private Bid currentHigestBid;
+	
+    private String description;	
+
+    @OneToMany
 	private List<Bid> bids;
 	
 	public List<Bid> getBids() {
@@ -35,13 +39,13 @@ public class Lot implements VersionedEntity{
 	public void setBids(final List<Bid> bids) {
 		this.bids = bids;
 	}
-
-	public Integer getLotNumber() {
-		return lotNumber;
+	
+	public RefId getLot() {
+		return lot;
 	}
 
-	public void setLotNumber(final Integer lotNumber) {
-		this.lotNumber = lotNumber;
+	public void setLot(RefId lot) {
+		this.lot = lot;
 	}
 
 	public String getDescription() {
@@ -58,14 +62,6 @@ public class Lot implements VersionedEntity{
 
 	public void setCurrentHigestBid(Bid currentHigestBid) {
 		this.currentHigestBid = currentHigestBid;
-	}
-	
-	public Long getCataLogNumber() {
-		return cataLogNumber;
-	}
-
-	public void setCataLogNumber(Long cataLogNumber) {
-		this.cataLogNumber = cataLogNumber;
 	}
 
 	public VersionDetails getVersion() {

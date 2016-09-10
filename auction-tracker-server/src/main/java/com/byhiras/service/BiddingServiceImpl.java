@@ -85,5 +85,12 @@ public class BiddingServiceImpl implements BiddingService, MessageHandler<Bid> {
 		return lotBidsVersioningUtil
 				.getVersionPairByLotNumber(lot.getId());
 	}
+
+	@Override
+	public LotBids findLotBidsByLot(Integer lot) {
+		return findLotByLotNumber(lot)
+				.map(l -> lotBidsRepository.findDistinctByLotIdAndVersionCurrent(l.getId().getId(), true))
+				.orElseThrow(() -> new ObjectNotFoundException(lot, Lot.class.getName()));
+	}
 	
 }

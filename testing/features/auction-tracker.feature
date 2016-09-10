@@ -32,10 +32,49 @@ Feature: Auction Tracker Fetures
       | 1                 | Sunflowers by Van Gogh  |
     And a bidder "lee" registers at the "sothebys" auction and recieves paddle 42:
     When bidding on lot 1 opens:
-    And bidder "lee" bids 10.50 for lot 1 using paddle 42:
+    And bidder "lee" bids "10.50" for lot 1 using paddle 42:
     Then if the bidder "lee" looks up lot 1 bid history the following matching bid is listed:
       | price     | paddleNumber  |
       | 10.50     | 42            |
-    And if the bidder "lee" looks up all lots they have placed at the "sothebys" auction the following matching lot is listed:
-      | lot         |
-      | 1           |
+    And if the bidder "lee" looks up the current highest bid for lot 1 then the following matching bid will be returned:
+      | price     | paddleNumber  |
+      | 10.50     | 42            |
+    And a bidder "austin" registers at the "sothebys" auction and recieves paddle 45:
+    And bidder "austin" bids "11.23" for lot 1 using paddle 45:
+    Then if the bidder "austin" looks up lot 1 bid history the following matching bid is listed:
+      | price     | paddleNumber  |
+      | 10.50     | 42            |
+      | 11.23     | 45            |
+    And if the bidder "austin" looks up the current highest bid for lot 1 then the following matching bid will be returned:
+      | price     | paddleNumber  |
+      | 11.23     | 45            |
+    And bidder "lee" bids "11.22" for lot 1 using paddle 42:
+    Then if the bidder "lee" looks up lot 1 bid history the following matching bid is listed:
+      | price     | paddleNumber  |
+      | 10.50     | 42            |
+      | 11.23     | 45            |
+      | 11.22     | 42            |
+    And if the bidder "lee" looks up the current highest bid for lot 1 then the following matching bid will be returned:
+      | price     | paddleNumber  |
+      | 11.23     | 45            |
+    And bidder "lee" bids "11.23" for lot 1 using paddle 42:
+    Then if the bidder "lee" looks up lot 1 bid history the following matching bid is listed:
+      | price     | paddleNumber  |
+      | 10.50     | 42            |
+      | 11.23     | 45            |
+      | 11.22     | 42            |
+      | 11.23     | 42            |
+    And if the bidder "lee" looks up the current highest bid for lot 1 then the following matching bid will be returned:
+      | price     | paddleNumber  |
+      | 11.23     | 45            |
+    And bidder "lee" bids "11.24" for lot 1 using paddle 42:
+    Then if the bidder "lee" looks up lot 1 bid history the following matching bid is listed:
+      | price     | paddleNumber  |
+      | 10.50     | 42            |
+      | 11.23     | 45            |
+      | 11.22     | 42            |
+      | 11.23     | 42            |
+      | 11.24     | 42            |
+    And if the bidder "lee" looks up the current highest bid for lot 1 then the following matching bid will be returned:
+      | price     | paddleNumber  |
+      | 11.24     | 42            |

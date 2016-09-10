@@ -1,6 +1,7 @@
 package com.byhiras.bid.model;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -54,5 +55,11 @@ public class Bid {
 
 	public void setLotBids(LotBids lotBids) {
 		this.lotBids = lotBids;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "Bid [paddleNumber=" + paddleNumber + ", price=" + price + "]";
+	}
+	
 }

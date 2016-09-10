@@ -11,10 +11,14 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class LotBids implements VersionedEntity{
+	private static Logger LOG = LoggerFactory.getLogger(LotBids.class);
 	
     @EmbeddedId
     @JsonIgnore
@@ -25,8 +29,8 @@ public class LotBids implements VersionedEntity{
     	
 	private Long lotId;	    
     
-    @OneToOne
-	private Bid currentHigestBid;
+    @OneToOne(cascade=CascadeType.ALL)
+	private Bid currentHighestBid;
 	
     private String description;	
     
@@ -56,13 +60,13 @@ public class LotBids implements VersionedEntity{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public Bid getCurrentHigestBid() {
-		return currentHigestBid;
+	
+	public Bid getCurrentHighestBid() {
+		return currentHighestBid;
 	}
 
-	public void setCurrentHigestBid(Bid currentHigestBid) {
-		this.currentHigestBid = currentHigestBid;
+	public void setCurrentHighestBid(Bid currentHighestBid) {
+		this.currentHighestBid = currentHighestBid;
 	}
 
 	public VersionDetails getVersion() {
@@ -80,9 +84,24 @@ public class LotBids implements VersionedEntity{
 	}
 
 	public LotBids addBid(Bid bid) {
+		LOG.info("Adding Bid [{}] Current Highest [{}]", bid, currentHighestBid);
 		bids.add(bid);
+		if(bids.size() == 1){
+			setCurrentHighestBid(bid);
+			LOG.info("First Bid - Setting to highest [{}]", bid);
+		}
+		else if(currentHighestBid.getPrice().compareTo(bid.getPrice()) == 0){
+			setCurrentHighestBid(currentHighestBid);
+			LOG.info("Bid is equal maintaining current bid [{}]", currentHighestBid);
+		}
+		else{
+			if(currentHighestBid.getPrice().compareTo(bid.getPrice()) < 0){
+				LOG.info("Bid [{}] is new highest bid", bid);
+				setCurrentHighestBid(bid);				
+			}
+		}	
 		return this;
-	}
+	}	
 
 	public Guid getGuid() {
 		return guid;
